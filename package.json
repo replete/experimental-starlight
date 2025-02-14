@@ -8,11 +8,13 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-		"upgrade": "npx @astrojs/upgrade",
-		"pdf": "npx starlight-to-pdf http://localhost:4321"
+    "upgrade": "npx @astrojs/upgrade",
+    "pdf": "npx starlight-to-pdf http://localhost:4321"
   },
   "dependencies": {
+    "@astrojs/markdoc": "^0.12.9",
     "@astrojs/starlight": "^0.31.1",
+    "@astrojs/starlight-markdoc": "^0.2.0",
     "astro": "^5.1.5",
     "sharp": "^0.32.5"
   }
