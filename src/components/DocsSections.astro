@@ -1,0 +1,20 @@
+---
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import { getCollection } from 'astro:content';
+
+const allDocs = await getCollection('docs');
+const sections = [...new Set(allDocs.map(doc => doc.id.split('/')[0]))];
+---
+
+<CardGrid stagger>
+  {sections.map((section) => (
+    <Card
+      title={section.charAt(0).toUpperCase() + section.slice(1)}
+      icon="document"
+    >
+      Browse our {section} documentation section for detailed information and guides.
+      <br/>
+      <a href={`/${section}`}>View {section} docs →</a>
+    </Card>
+  ))}
+</CardGrid>

@@ -1,0 +1,19 @@
+---
+import FolderIndex from '../../components/FolderIndex.astro';
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+
+export const getStaticPaths = (async () => {
+  const docs = await getCollection('docs');
+  const sections = [...new Set(docs.map(doc => doc.id.split('/')[0]))];
+
+  return sections.map(section => ({
+    params: { section: section },
+  }));
+}) as GetStaticPaths;
+
+// Type the section param
+const { section } = Astro.params as { section: string };
+---
+
+<FolderIndex folder={section} />

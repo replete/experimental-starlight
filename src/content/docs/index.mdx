@@ -1,0 +1,28 @@
+---
+title: Welcome to Documentation
+description: Your comprehensive documentation hub
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import DocsSections from '../../components/DocsSections.astro';
+import RecentDocs from '../../components/RecentDocs.astro';
+
+<DocsSections />
+
+## Recent Documents
+
+<RecentDocs />
+
+## Quick Links
+
+<CardGrid>
+  <Card title="Need Help?" icon="question">
+    Contact our support team for assistance.
+  </Card>
+  <Card title="API Reference" icon="setting">
+    Browse our complete API documentation.
+  </Card>
+  <Card title="Community" icon="discord">
+    Join our growing community.
+  </Card>
+</CardGrid>

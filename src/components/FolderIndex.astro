@@ -1,0 +1,33 @@
+---
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  folder: string;
+}
+
+const { folder } = Astro.props;
+const docs = await getCollection('docs');
+const folderDocs = docs.filter(doc =>
+  doc.id.startsWith(folder + '/') &&
+  doc.id !== folder + '/index'
+);
+---
+
+<div class="content-width">
+  <h1>{folder.charAt(0).toUpperCase() + folder.slice(1)} Documentation</h1>
+
+  <p>Browse all {folder} documentation:</p>
+
+  <CardGrid>
+    {folderDocs.map(doc => (
+      <Card
+        title={doc.data.title}
+        icon="document"
+      >
+        <p>{doc.data.description}</p>
+        <a href={`/${folder}/${doc.id.split('/').slice(1).join('/')}`}>Read more →</a>
+      </Card>
+    ))}
+  </CardGrid>
+</div>

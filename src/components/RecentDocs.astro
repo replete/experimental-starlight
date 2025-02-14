@@ -1,0 +1,28 @@
+---
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import { getCollection } from 'astro:content';
+
+type Props = Record<string, never>;
+
+const allDocs = await getCollection('docs');
+const recentDocs = allDocs
+  .sort((a, b) => {
+    const dateA = a.data.lastUpdated instanceof Date ? a.data.lastUpdated.getTime() : 0;
+    const dateB = b.data.lastUpdated instanceof Date ? b.data.lastUpdated.getTime() : 0;
+    return dateB - dateA;
+  })
+  .slice(0, 4);
+---
+
+<CardGrid>
+  {recentDocs.map(doc => (
+    <Card
+      title={doc.data.title || 'Untitled'}
+      icon="pencil"
+    >
+      {doc.data.description || 'No description available'}
+      <br/>
+      <a href={`/${doc.id}`}>Read more →</a>
+    </Card>
+  ))}
+</CardGrid>
