@@ -45,4 +45,8 @@ export default defineConfig({
             },
         ],
 		}), markdoc()],
+		...(process.env.GITHUB_ACTIONS && {
+			site: 'https://replete.github.io',
+			base: '/experimental-starlight',
+		  }),
 });
